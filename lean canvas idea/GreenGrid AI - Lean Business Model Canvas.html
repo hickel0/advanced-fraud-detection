@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<!-- saved from url=(0092)file:///D:/Final%20Year/App%20Domains%203/lean%20canvas%20idea/GreenGrid_AI_Lean_Canvas.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenGrid AI - Lean Business Model Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 10mm;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .canvas-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a5f2a 0%, #2d8a3e 50%, #3cb371 100%);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header .tagline {
+            font-size: 14px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 2px;
+            background: #e0e0e0;
+            padding: 2px;
+        }
+
+        .cell {
+            background: white;
+            padding: 12px;
+            min-height: 140px;
+        }
+
+        .cell-header {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cell-content {
+            font-size: 10px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .cell-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .cell-content li {
+            padding: 3px 0;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .cell-content li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Color coding */
+        .problem { border-color: #e74c3c; }
+        .problem .cell-header { color: #e74c3c; border-color: #e74c3c; }
+        .problem li::before { color: #e74c3c; }
+
+        .solution { border-color: #3498db; }
+        .solution .cell-header { color: #3498db; border-color: #3498db; }
+        .solution li::before { color: #3498db; }
+
+        .uvp { border-color: #9b59b6; }
+        .uvp .cell-header { color: #9b59b6; border-color: #9b59b6; }
+        .uvp li::before { color: #9b59b6; }
+
+        .advantage { border-color: #f39c12; }
+        .advantage .cell-header { color: #f39c12; border-color: #f39c12; }
+        .advantage li::before { color: #f39c12; }
+
+        .segments { border-color: #1abc9c; }
+        .segments .cell-header { color: #1abc9c; border-color: #1abc9c; }
+        .segments li::before { color: #1abc9c; }
+
+        .metrics { border-color: #e67e22; }
+        .metrics .cell-header { color: #e67e22; border-color: #e67e22; }
+        .metrics li::before { color: #e67e22; }
+
+        .channels { border-color: #16a085; }
+        .channels .cell-header { color: #16a085; border-color: #16a085; }
+        .channels li::before { color: #16a085; }
+
+        .costs { border-color: #c0392b; }
+        .costs .cell-header { color: #c0392b; border-color: #c0392b; }
+        .costs li::before { color: #c0392b; }
+
+        .revenue { border-color: #27ae60; }
+        .revenue .cell-header { color: #27ae60; border-color: #27ae60; }
+        .revenue li::before { color: #27ae60; }
+
+        /* Grid positioning */
+        .problem { grid-column: 1; grid-row: 1 / 3; }
+        .solution { grid-column: 2; grid-row: 1; }
+        .metrics { grid-column: 2; grid-row: 2; }
+        .uvp { grid-column: 3; grid-row: 1 / 3; }
+        .advantage { grid-column: 4; grid-row: 1; }
+        .channels { grid-column: 4; grid-row: 2; }
+        .segments { grid-column: 5; grid-row: 1 / 3; }
+        .costs { grid-column: 1 / 3; grid-row: 3; }
+        .revenue { grid-column: 3 / 6; grid-row: 3; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 8px;
+            border-left: 3px solid;
+        }
+
+        .uvp .highlight-box {
+            border-left-color: #9b59b6;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 11px;
+            color: #555;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 30px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        .footer span {
+            opacity: 0.8;
+        }
+
+        .icon {
+            font-size: 14px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            margin-top: 6px;
+        }
+
+        .pricing-item {
+            background: #f8f9fa;
+            padding: 4px 6px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 9px;
+        }
+
+        .pricing-item strong {
+            display: block;
+            color: #27ae60;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .canvas-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas-container">
+        <div class="header">
+            <h1>GreenGrid AI</h1>
+            <div class="tagline">AI-Powered Energy Optimization Platform for Government &amp; Public Sector Infrastructure</div>
+        </div>
+
+        <div class="canvas-grid">
+            <!-- Problem -->
+            <div class="cell problem">
+                <div class="cell-header">
+                    <span class="icon">!</span> Problem
+                </div>
+                <div class="cell-content">
+                    <ul>
+                        <li><strong>Energy Waste:</strong> 20-30% energy wasted in public buildings due to outdated HVAC and poor scheduling</li>
+                        <li><strong>Sustainability Mandates:</strong> Governments struggling to meet net-zero targets without actionable data</li>
+                        <li><strong>Budget Constraints:</strong> Rising energy costs with limited technical expertise</li>
+                    </ul>
+                    <div class="highlight-box" style="border-left-color: #e74c3c;">
+                        <strong style="font-size: 9px;">Existing Alternatives:</strong>
+                        <ul style="font-size: 9px;">
+                            <li>Manual audits (expensive, static)</li>
+                            <li>Basic BMS (no prediction)</li>
+                            <li>Hardware implementation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="cell solution">
+                <div class="cell-header">
+                    <span class="icon">*</span> Solution
+                </div>
+                <div class="cell-content">
+                    <ul>
+                        <li><strong>Predictive Analytics:</strong> ML forecasting based on weather, occupancy &amp; trends</li>
+                        <li><strong>Optimization Engine:</strong> AI-driven HVAC &amp; load balancing</li>
+                        <li><strong>Sustainability Dashboard:</strong> Real-time carbon tracking &amp; compliance reporting</li>
+                        <li><strong>Renewable Integration:</strong> Solar/wind forecasting &amp; battery management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="cell metrics">
+                <div class="cell-header">
+                    <span class="icon">#</span> Key Metrics
+                </div>
+                <div class="cell-content">
+                    <ul>
+                        <li>Energy Savings (%)</li>
+                        <li>Cost Reduction (€)</li>
+                        <li>Carbon Reduction (CO2)</li>
+                        <li>Facilities Onboarded</li>
+                        
+                        <li>Prediction Accuracy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Unique Value Proposition -->
+            <div class="cell uvp">
+                <div class="cell-header">
+                    <span class="icon">@</span> Unique Value Proposition
+                </div>
+                <div class="cell-content">
+                    <div class="highlight-box">
+                        <p class="quote">"Transform public buildings into smart, sustainable assets. Deliver 10-15% energy savings through predictive intelligence."</p>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 10px;"><strong>High-Level Concept:</strong></p>
+                    <p style="font-style: italic; font-size: 10px;">"Nested thermostat intelligence, scaled for government infrastructure"</p>
+                    <ul style="margin-top: 8px;">
+                        <li>Purpose-built for public sector compliance</li>
+                        <li>No hardware required</li>
+                        <li>Transparent &amp; explainable AI</li>
+                        <li>ROI in 9-18 months</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Unfair Advantage -->
+            <div class="cell advantage">
+                <div class="cell-header">
+                    <span class="icon">^</span> Unfair Advantage
+                </div>
+                <div class="cell-content">
+                    <ul>
+                        <li><strong>Proprietary Dataset:</strong> Aggregated government energy data with network effects</li>
+                        <li><strong>Domain Expertise:</strong> Public procurement &amp; compliance knowledge</li>
+                        <li><strong>Strategic Partnerships:</strong> Utility &amp; smart meter integrations</li>
+                        <li><strong>Regulatory Head Start:</strong> Built for ESG requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Channels -->
+            <div class="cell channels">
+                <div class="cell-header">
+                    <span class="icon">=</span> Channels
+                </div>
+                <div class="cell-content">
+                    <ul>
+                        <li>Direct government sales team</li>
+                        
+                        <li>Smart city conferences</li>
+                        <li>Energy consultant partnerships</li>
+                        <li>90-day free pilot programs</li>
+                        <li>Published case studies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Customer Segments -->
+            <div class="cell segments">
+                <div class="cell-header">
+                    <span class="icon">+</span> Customer Segments
+                </div>
+                <div class="cell-content">
+                    <p style="font-weight: 600; color: #1abc9c; font-size: 9px;">PRIMARY:</p>
+                    <ul>
+                        <li>Municipal &amp; local governments</li>
+                        <li>Public school districts</li>
+                        <li>Public hospitals</li>
+                    </ul>
+                    <p style="font-weight: 600; color: #1abc9c; font-size: 9px; margin-top: 6px;">SECONDARY:</p>
+                    <ul>
+                        <li>State/provincial agencies</li>
+                        <li>University systems</li>
+                    </ul>
+                    <p style="font-weight: 600; color: #1abc9c; font-size: 9px; margin-top: 6px;">EARLY ADOPTERS:</p>
+                    <ul>
+                        <li>Cities with climate emergencies</li>
+                        <li>Smart city initiatives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cost Structure -->
+            <div class="cell costs">
+                <div class="cell-header">
+                    <span class="icon">€</span> Cost Structure
+                </div>
+                <div class="cell-content" style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <strong style="font-size: 9px;">Fixed Costs:</strong>
+                        <ul>
+                            <li>Cloud infrastructure (AWS/Azure Gov)</li>
+                            <li>Engineering team (ML, data science)</li>
+                            <li>Security &amp; compliance certs</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1;">
+                        <strong style="font-size: 9px;">Variable Costs:</strong>
+                        <ul>
+                            <li>Customer success &amp; support</li>
+                            <li>Sales commissions</li>
+                            <li>Marketing &amp; conferences</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 0.8;">
+                        <strong style="font-size: 9px;">Cost Split:</strong>
+                        <ul>
+                            <li>Engineering: 40%</li>
+                            <li>Sales/Marketing: 25%</li>
+                            <li>Infrastructure: 15%</li>
+                            <li>Support: 12%</li>
+                            <li>G&amp;A: 8%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Revenue Streams -->
+            <div class="cell revenue">
+                <div class="cell-header">
+                    <span class="icon">€</span> Revenue Streams
+                </div>
+                <div class="cell-content">
+                    <strong style="font-size: 9px;">Primary: SaaS Subscription (Tiered)</strong>
+                    <div class="pricing-grid">
+                        <div class="pricing-item">
+                            <strong>Starter</strong>
+                            Single facility<br>€800-2,000/mo
+                        </div>
+                        <div class="pricing-item">
+                            <strong>Professional</strong>
+                            Multi-facility<br>€4,000-15,000/mo
+                        </div>
+                        <div class="pricing-item">
+                            <strong>Governmental</strong>
+                            City/Council-wide<br>€50K-500K/yr
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 20px; margin-top: 10px;">
+                        <div style="flex: 1;">
+                            <strong style="font-size: 9px;">Secondary Revenue:</strong>
+                            <ul>
+                                <li>Implementation services</li>
+                                <li>Training &amp; certification</li>
+                                <li>Premium support &amp; Service Level Agreements</li>
+                            </ul>
+                        </div>
+                        <div style="flex: 1;">
+                            <strong style="font-size: 9px;">Advantages:</strong>
+                            <ul>
+                                <li>Recurring, predictable revenue</li>
+                                <li>Multi-year govt contracts (3-5 yrs)</li>
+                                <li>Expansion as customers grow</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>CSC1112: Domain Applications 3 - Lean Canvas Assignment | Dublin City University | April 2026</span>
+        </div>
+    </div>
+
+
+</body></html>

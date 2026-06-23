@@ -1,0 +1,242 @@
+================================================================================
+PAPER vs NOTEBOOK ALIGNMENT REPORT
+================================================================================
+Document: CSC1112 - Fraud Detection Paper (1).docx
+Notebook: Fraud_Detection_PaySim_Analysis.ipynb
+Generated: 2026-04-08
+================================================================================
+
+SUMMARY: The paper is MOSTLY ALIGNED with the notebook results, but there are
+several issues that need to be corrected.
+
+================================================================================
+1. DATASET STATISTICS - ALIGNED
+================================================================================
+Paper States:                      Notebook Shows:
+- 6,362,620 transactions          - 6,362,620 transactions ✓
+- 8,213 fraudulent (0.13%)        - 8,213 fraudulent (0.1291%) ✓
+- Imbalance ratio ~770:1          - Imbalance ratio 773.71:1 ✓
+- 5 transaction types             - 5 transaction types ✓
+
+Status: CORRECT
+
+================================================================================
+2. RQ1 ALGORITHM COMPARISON - PARTIAL ALIGNMENT ISSUE
+================================================================================
+
+CRITICAL ISSUE: Paper Introduction (paragraph 5) states:
+"Several models are compared, including logistic regression, decision trees,
+random forests, gradient boosting, XGBoost, LightGBM, and neural networks."
+
+However, the NOTEBOOK ONLY EVALUATES:
+1. Logistic Regression
+2. Decision Tree
+3. Random Forest
+4. Gradient Boosting
+5. XGBoost
+
+LightGBM and Neural Networks are NOT in the notebook!
+
+ACTION REQUIRED: Remove references to LightGBM and neural networks from the
+paper, OR add these algorithms to the notebook analysis.
+
+--------------------------------------------------------------------------------
+RQ1 Results Comparison - Table 3 vs Notebook:
+--------------------------------------------------------------------------------
+Algorithm            | Paper ROC-AUC | Notebook AUC | Match?
+---------------------|---------------|--------------|--------
+Logistic Regression  | 0.826         | 0.8258       | ✓
+Decision Tree        | 0.955         | 0.9554       | ✓
+Random Forest        | 0.985         | 0.9847       | ✓
+Gradient Boosting    | 0.986         | 0.9861       | ✓
+XGBoost              | 0.998         | 0.9977       | ✓
+
+Algorithm            | Paper Recall  | Notebook     | Match?
+---------------------|---------------|--------------|--------
+Logistic Regression  | 0.043         | 0.0434       | ✓
+Decision Tree        | 0.537         | 0.5373       | ✓
+Random Forest        | 0.528         | 0.5284       | ✓
+Gradient Boosting    | 0.610         | 0.6096       | ✓
+XGBoost              | 0.872         | 0.8722       | ✓
+
+Algorithm            | Paper Prec.   | Notebook     | Match?
+---------------------|---------------|--------------|--------
+Logistic Regression  | 0.369         | 0.3690       | ✓
+Decision Tree        | 0.924         | 0.9239       | ✓
+Random Forest        | 0.982         | 0.9819       | ✓
+Gradient Boosting    | 0.881         | 0.8809       | ✓
+XGBoost              | 0.945         | 0.9446       | ✓
+
+Status: Table 3 values MATCH notebook exactly (appropriately rounded)
+
+================================================================================
+3. RQ2 FEATURE IMPORTANCE - ALIGNMENT ISSUE
+================================================================================
+
+Paper States (Section 5.2):
+"Amount_to_orig_balance, amount and type_encoded are unanimously the top
+features when it comes to pre transaction fraud detection."
+
+Notebook Shows:
+1. amount_to_orig_balance: 0.9770 (97.70%)
+2. amount: 0.0170 (1.70%)
+3. type_encoded: 0.0031 (0.31%)
+
+Status: TOP 3 FEATURES MATCH ✓
+
+--------------------------------------------------------------------------------
+ISSUE: Missing Table 4
+--------------------------------------------------------------------------------
+Paper states "Table 4 presents the top 10 features ranked by XGBoost
+importance scores" but TABLE 4 APPEARS TO BE MISSING from the document.
+
+The notebook shows only 10 features total (safe features), so a "top 10"
+would be all features:
+
+Rank | Feature                    | Importance
+-----|----------------------------|------------
+1    | amount_to_orig_balance     | 0.9770
+2    | amount                     | 0.0170
+3    | type_encoded               | 0.0031
+4    | day                        | 0.0005
+5    | hour_of_day                | 0.0005
+6    | oldbalanceOrg              | 0.0005
+7    | dest_zero_balance_before   | 0.0004
+8    | amount_to_dest_balance     | 0.0004
+9    | oldbalanceDest             | 0.0004
+10   | step                       | 0.0003
+
+ACTION REQUIRED: Add Table 4 to the paper with feature importance values.
+
+--------------------------------------------------------------------------------
+Correlation Analysis:
+--------------------------------------------------------------------------------
+Paper States:
+- Positive correlation: amount_to_dest_balance, amount, day
+- Negative correlation: hour_of_day, oldbalanceDest
+
+Notebook Shows:
+- amount_to_dest_balance: +0.1836 ✓
+- amount: +0.0779 ✓
+- day: +0.0335 ✓
+- hour_of_day: -0.0312 ✓
+- oldbalanceDest: -0.0057 ✓
+
+Status: CORRELATIONS MATCH ✓
+
+================================================================================
+4. RQ3 IMBALANCE HANDLING - ALIGNED
+================================================================================
+
+Table 5 Comparison:
+--------------------------------------------------------------------------------
+Method          | Paper ROC-AUC | Notebook AUC | Match?
+----------------|---------------|--------------|--------
+Baseline        | 0.9977        | 0.9977       | ✓
+Undersampling   | 0.9979        | 0.9979       | ✓
+SMOTE           | 0.9970        | 0.9970       | ✓
+Class Weighting | 0.9977        | 0.9977       | ✓
+Combined        | 0.9985        | 0.9985       | ✓
+
+Method          | Paper Recall  | Notebook     | Match?
+----------------|---------------|--------------|--------
+Baseline        | 0.8722        | 0.8722       | ✓
+Undersampling   | 0.9919        | 0.9919       | ✓
+SMOTE           | 0.9882        | 0.9882       | ✓
+Class Weighting | 0.9927        | 0.9927       | ✓
+Combined        | 0.9935        | 0.9935       | ✓
+
+Method          | Paper FN      | Notebook FN  | Match?
+----------------|---------------|--------------|--------
+Baseline        | 315           | 315          | ✓
+Undersampling   | 20            | 20           | ✓
+SMOTE           | 29            | 29           | ✓
+Class Weighting | 18            | 18           | ✓
+Combined        | 16            | 16           | ✓
+
+Status: ALL RQ3 VALUES MATCH EXACTLY ✓
+
+================================================================================
+5. DATA LEAKAGE DISCUSSION - ALIGNED
+================================================================================
+
+Paper States:
+- full_drain correlation with fraud: +0.987
+- 100% of full_drain=1 transactions were fraudulent
+- 97.5% of all fraudulent transactions had full_drain=1
+
+Notebook States:
+- "full_drain feature exhibits near-perfect correlation (+0.987) with fraud"
+
+Status: ALIGNED ✓
+
+================================================================================
+6. SAFE FEATURE SET - ALIGNED
+================================================================================
+
+Paper Table 1 (Pre-Transaction Features):
+1. step (Temporal)
+2. type_encoded (Categorical)
+3. amount (Numeric)
+4. oldbalanceOrg (Numeric)
+5. oldbalanceDest (Numeric)
+6. amount_to_orig_balance (Ratio)
+7. amount_to_dest_balance (Ratio)
+8. dest_zero_balance_before (Binary)
+9. hour_of_day (Temporal)
+10. day (Temporal)
+
+Notebook safe_feature_cols:
+['step', 'type_encoded', 'amount', 'oldbalanceOrg', 'oldbalanceDest',
+ 'amount_to_orig_balance', 'amount_to_dest_balance',
+ 'dest_zero_balance_before', 'hour_of_day', 'day']
+
+Status: EXACT MATCH - 10 features ✓
+
+================================================================================
+7. CONCLUSION STATEMENTS - ALIGNED
+================================================================================
+
+Paper Conclusion States:
+- "XGBoost achieving the highest ROC-AUC of 0.998"
+  Notebook: 0.9977 ≈ 0.998 ✓
+
+- "ratio of transaction amount to sender balance emerged as strongest
+   fraud indicator"
+  Notebook: amount_to_orig_balance at 97.7% importance ✓
+
+- "Combined approach delivered best results... high recall"
+  Notebook: Combined XGBoost 99.35% recall (best) ✓
+
+Status: CONCLUSIONS MATCH NOTEBOOK FINDINGS ✓
+
+================================================================================
+SUMMARY OF ISSUES TO FIX
+================================================================================
+
+CRITICAL (Must Fix):
+1. Remove LightGBM and neural networks from Introduction paragraph 5
+   OR add these algorithms to the notebook analysis
+
+MODERATE (Should Fix):
+2. Add Table 4 showing feature importance ranking with actual values
+
+MINOR (Optional):
+3. Consider adding the exact importance percentages in Section 5.2
+   (97.7% for amount_to_orig_balance)
+
+================================================================================
+OVERALL ASSESSMENT
+================================================================================
+
+The paper's quantitative results (Tables 3 and 5) are PERFECTLY ALIGNED
+with the notebook outputs. The methodological description and safe feature
+set are accurate.
+
+The main issue is the claim about evaluating LightGBM and neural networks
+in the introduction, which were not actually tested in the notebook. This
+needs to be corrected to maintain academic integrity.
+
+After fixing these issues, the paper will be fully aligned with the
+experimental work in the notebook.
+================================================================================
